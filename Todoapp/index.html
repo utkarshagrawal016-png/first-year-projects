@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient();
+            text-align: center;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 12px, 15px;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, sans-serif;
+            background: #f4f7fb;
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 18px;
+            font-size: 22px;
+            color: #444;
+            font-weight: 600;
+        }
+
+        form {
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            padding: 6px 8px;
+            width: 170px;
+            border-radius: 5px;
+            border: 1px solid #dcdcdc;
+            font-size: 13px;
+            outline: none;
+            transition: .2s;
+            background: white;
+        }
+
+        input[type="text"]:focus {
+            border-color: #7aa7ff;
+            box-shadow: 0 0 3px rgba(122, 167, 255, .4);
+        }
+
+        input[type="submit"] {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            background: #7aa7ff;
+            color: white;
+            font-size: 13px;
+            cursor: pointer;
+            margin-left: 5px;
+            transition: .2s;
+        }
+
+        input[type="submit"]:hover {
+            background: #5f8df0;
+        }
+
+        table {
+            margin-top: 18px;
+            border-collapse: separate;
+            border-spacing: 0 6px;
+        }
+
+        th,
+        td {
+            padding: 6px 10px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9e9e9;
+            font-size: 13px;
+        }
+
+        th {
+            min-width: 170px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        button {
+            padding: 4px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: .2s;
+        }
+
+        button:first-child {
+            background: #ff8080;
+            color: white;
+        }
+
+        button:first-child:hover {
+            background: #ff5c5c;
+        }
+
+        button:last-child {
+            background: #6fd3c1;
+            color: white;
+        }
+
+        button:last-child:hover {
+            background: #50bfae;
+        }
+
+        tr:hover th,
+        tr:hover td {
+            background: #f9fbff;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <h3>ToDo List</h3>
+    <form action="" onsubmit="myfunc(); return false">
+        Task : <input type="text" name="" id="task">
+        <input type="submit" name="" id="" value="Add Task">
+    </form>
+    <p id="demo"></p>
+    <br><br><br>
+    <table id="main" cellspacing="10" cellpadding="5" align="center"></table>
+    <script>
+        function myfunc() {
+            let input = document.getElementById("task").value.trim();
+            let text = "";
+            if (!input) {
+                return false;
+            }
+
+            cell1 = document.createElement("th")
+            cell2 = document.createElement("td")
+            cell3 = document.createElement("td")
+
+            but2 = document.createElement("button")
+            but2.textContent = "Remove"
+            but2.setAttribute("onclick", "remove(this)")
+
+            but3 = document.createElement("button")
+            but3.textContent = "Edit"
+            but3.setAttribute("onclick", "edit(this)")
+
+            let row = document.createElement("tr")
+
+            cell1.textContent = input
+            cell2.appendChild(but2)
+            cell3.appendChild(but3)
+
+            row.appendChild(cell1)
+            row.appendChild(cell2)
+            row.appendChild(cell3)
+
+            tab_le = document.getElementById("main")
+            tab_le.appendChild(row)
+            return false;
+        }
+        function remove(inp) {
+            tr = inp.parentNode.parentNode
+            tab_le2 = document.getElementById("main")
+            tab_le2.removeChild(tr)
+        }
+
+        function edit(inp) {
+            row = inp.parentNode.parentNode
+            thcell = row.querySelector("th")
+            thcell.innerHTML = `<input type="text" id="newtask">`
+            inp.textContent = "Save"
+            inp.setAttribute("onclick", "save(this)")
+
+        }
+        function save(inp2) {
+            row = inp2.parentNode.parentNode
+            th = row.getElementsByTagName("th")[0]
+            input = th.querySelector("input")
+            if (input) {
+                th.textContent = input.value
+                inp2.textContent = "Edit"
+                inp2.setAttribute("onclick", "edit(this)")
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
